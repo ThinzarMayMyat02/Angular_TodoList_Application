@@ -15,9 +15,9 @@ export interface States{
 })
 export class TodoService {
   private readonly todos = signal<Todo[]>(this.load());
-  readonly fileter = signal<Filter>('all');
+  readonly filter = signal<Filter>('all');
   readonly filteredTodos = computed(()=> {
-    const f = this.fileter();
+    const f = this.filter();
     const items = this.todos();
     if(f === 'active') return items.filter(item => !item.completed);
     if(f === 'completed') return items.filter(item => item.completed);
@@ -40,6 +40,8 @@ export class TodoService {
   }
 
   addTodo(title: string){
+    const t = title.trim();
+    if(t==='') return;
     this.todos.update((item) => [
       ...item,
       {id: crypto.randomUUID(), title, completed: false, createdAt: new Date()}

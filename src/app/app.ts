@@ -1,37 +1,18 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TodoService } from './service/todo';
+import { Header } from './todo/components/header/header';
+import { TodoAdd } from "./todo/components/todo-add/todo-add";
+import { TodoFilter } from "./todo/components/todo-filter/todo-filter";
+import { TodoList } from "./todo/components/todo-list/todo-list";
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, Header, TodoAdd, TodoFilter, TodoList],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
   //protected readonly title = signal('angular-project CI/CD');
   protected readonly title = signal('To-do Application');
-  protected readonly todoService = inject(TodoService);
 
-  todos = this.todoService.filteredTodos;
-  status = this.todoService.status;
-  filter = this.todoService.fileter;
-
-  newTitle = '';
-
-  addTodo(title:string){
-    this.todoService.addTodo(title);
-  }
-
-  removeTodo(id:string){
-    this.todoService.removeTodo(id);
-  }
-
-  renameTodo(id:string,title:string){
-    this.todoService.renameTodo(id,title);
-  }
-
-  toggleTodo(id:string){
-    this.todoService.toggleButton(id);
-  }
 }
