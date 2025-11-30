@@ -1,7 +1,7 @@
 import {computed, effect, Injectable, signal} from '@angular/core';
 import {Todo} from '../model/todo.model';
 
-type Filter = 'all' | 'active' | 'completed'
+export type Filter = 'all' | 'active' | 'completed'
 
 const TODO_Key = 'todos'
 export interface States{

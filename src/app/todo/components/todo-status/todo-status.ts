@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { TodoService } from '../../../service/todo';
+import { TodoStore } from '../../../store/todo.store';
 
 @Component({
   selector: 'app-todo-status',
@@ -8,6 +8,7 @@ import { TodoService } from '../../../service/todo';
   styleUrl: './todo-status.css'
 })
 export class TodoStatus {
-  private readonly todoService = inject(TodoService);
-  protected readonly status = this.todoService.status;
+  //private readonly todoService = inject(TodoService);
+  private readonly todoStore = inject(TodoStore);
+  protected readonly status = this.todoStore.status;
 }

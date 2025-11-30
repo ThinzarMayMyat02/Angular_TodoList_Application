@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TodoService } from '../../../service/todo';
+import { TodoStore } from '../../../store/todo.store';
 
 @Component({
   selector: 'app-todo-add',
@@ -10,9 +10,9 @@ import { TodoService } from '../../../service/todo';
 })
 export class TodoAdd {
 
-  private readonly todoService = inject(TodoService);
+  private readonly todoStore = inject(TodoStore);
   newTitle: string = '';
   addTodo(title:string){
-    this.todoService.addTodo(title);
+    this.todoStore.addToDo(title);
   }
 }

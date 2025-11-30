@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { TodoService } from '../../../service/todo';
 import { TodoStatus } from "../todo-status/todo-status";
+import { TodoStore } from '../../../store/todo.store';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,18 +9,18 @@ import { TodoStatus } from "../todo-status/todo-status";
   styleUrl: './todo-list.css'
 })
 export class TodoList {
-  private readonly todoService = inject(TodoService);
-  protected readonly todos = this.todoService.filteredTodos;
-  protected readonly status = this.todoService.status;
+  private readonly todoStore = inject(TodoStore);
+  protected readonly todos = this.todoStore.filteredTodos;
+  protected readonly status = this.todoStore.status;
 
   removeTodo(id:string){
-    this.todoService.removeTodo(id);
+    this.todoStore.removeTodo(id);
   }
   renameTodo(id:string,title:string){
-    this.todoService.renameTodo(id,title);
+    this.todoStore.renameTodo(id,title);
   }
 
   toggleTodo(id:string){
-    this.todoService.toggleButton(id);
+    this.todoStore.toggleTodo(id);
   }
 }
